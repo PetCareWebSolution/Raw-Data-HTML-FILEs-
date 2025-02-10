@@ -1,0 +1,220 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Vet Registration Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes inputFocus {
+            from {
+                box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.5);
+            }
+            to {
+                box-shadow: 0 0 10px 5px rgba(255, 105, 180, 0.5);
+            }
+        }
+
+        .slide-in {
+            animation: slideIn 1s ease-out;
+        }
+
+        .fade-in {
+            animation: fadeIn 2s ease-in;
+        }
+
+        .input-focus:focus {
+            animation: inputFocus 0.5s forwards;
+        }
+
+        .custom-file-input {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .custom-file-input input[type="file"] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+
+        .custom-file-input::before {
+            content: 'Choose File';
+            display: inline-block;
+            background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+            border: 1px solid #999;
+            border-radius: 3px;
+            padding: 5px 8px;
+            outline: none;
+            white-space: nowrap;
+            -webkit-user-select: none;
+            cursor: pointer;
+            text-shadow: 1px 1px #fff;
+            font-weight: 700;
+            font-size: 10pt;
+        }
+
+        .custom-file-input:hover::before {
+            border-color: black;
+        }
+
+        .custom-file-input:active::before {
+            background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-pink-200 to-orange-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full slide-in">
+        <div class="flex justify-center mb-6">
+            <img alt="Illustration of a vet with a pet" class="w-48 h-36" height="150" src="https://storage.googleapis.com/a1aa/image/CMWHbUfr4ts-zCFhhePCLi5-KGFEXU3dEtkMccnRVcI.jpg" width="200"/>
+        </div>
+        <h2 class="text-2xl font-semibold text-center mb-6">Vet Registration</h2>
+        <form id="vetRegisterForm">
+            <div class="mb-4">
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 input-focus" placeholder="Name" type="text" required/>
+            </div>
+            <div class="mb-4">
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 input-focus" placeholder="Email" type="email" required/>
+            </div>
+            <div class="mb-4 relative">
+                <input id="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 input-focus" placeholder="Password" type="password" required/>
+                <i id="togglePassword" class="fas fa-eye absolute right-3 top-3 cursor-pointer text-gray-500"></i>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700">Vet Photo</label>
+                <div class="custom-file-input">
+                    <input id="vetPhoto" type="file" accept="image/*" required/>
+                </div>
+                <div id="vetPhotoPreview" class="mt-2 text-gray-700"></div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700">License and Certification</label>
+                <div class="custom-file-input">
+                    <input id="licenseCertification" type="file" accept=".pdf,.doc,.docx" multiple required/>
+                </div>
+                <div id="licenseCertificationPreview" class="mt-2 text-gray-700"></div>
+            </div>
+            <div class="mb-4 relative">
+                <input id="phoneNumber" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 input-focus" placeholder="Phone Number" type="tel" pattern="[0-9]{10}" required/>
+                <span id="phoneError" class="text-red-500 text-sm absolute -bottom-5 left-0 hidden">Please enter a valid 10-digit phone number</span>
+            </div>
+            <div class="mb-4">
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 input-focus" placeholder="Address" type="text" required/>
+            </div>
+            <div class="mb-4">
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 input-focus" placeholder="Specialization" type="text" required/>
+            </div>
+            <div class="mb-4">
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 input-focus" placeholder="Years of Experience" type="number" min="0" required/>
+            </div>
+            <div class="mb-4">
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 input-focus" placeholder="Clinic Name" type="text" required/>
+            </div>
+            <button class="w-full bg-gradient-to-r from-pink-500 to-orange-500 text-white py-2 rounded-md hover:from-pink-600 hover:to-orange-600" type="submit">Register</button>
+        </form>
+        <div class="text-center mt-6">
+            <a class="text-sm text-pink-500 hover:underline" href="#">Already have an account? Log in</a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const formContainer = document.querySelector('.slide-in');
+            formContainer.style.animation = 'slideIn 1s ease-out';
+
+            const togglePassword = document.querySelector('#togglePassword');
+            const password = document.querySelector('#password');
+
+            togglePassword.addEventListener('click', function (e) {
+                // toggle the type attribute
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                // toggle the eye slash icon
+                this.classList.toggle('fa-eye-slash');
+            });
+
+            const phoneNumber = document.querySelector('#phoneNumber');
+            const phoneError = document.querySelector('#phoneError');
+
+            phoneNumber.addEventListener('input', function (e) {
+                if (this.value.length > 10) {
+                    this.value = this.value.slice(0, 10);
+                }
+            });
+
+            phoneNumber.addEventListener('blur', function (e) {
+                if (this.value.length !== 10) {
+                    phoneError.classList.remove('hidden');
+                } else {
+                    phoneError.classList.add('hidden');
+                }
+            });
+
+            const vetRegisterForm = document.querySelector('#vetRegisterForm');
+            vetRegisterForm.addEventListener('submit', function (e) {
+                if (phoneNumber.value.length !== 10) {
+                    e.preventDefault();
+                    phoneError.classList.remove('hidden');
+                }
+            });
+
+            const vetPhoto = document.querySelector('#vetPhoto');
+            const vetPhotoPreview = document.querySelector('#vetPhotoPreview');
+            vetPhoto.addEventListener('change', function (e) {
+                if (this.files.length > 1) {
+                    alert('You can only upload one photo.');
+                    this.value = '';
+                } else {
+                    vetPhotoPreview.textContent = `Selected file: ${this.files[0].name}`;
+                }
+            });
+
+            const licenseCertification = document.querySelector('#licenseCertification');
+            const licenseCertificationPreview = document.querySelector('#licenseCertificationPreview');
+            licenseCertification.addEventListener('change', function (e) {
+                if (this.files.length > 5) {
+                    alert('You can only upload up to 5 files.');
+                    this.value = '';
+                } else {
+                    licenseCertificationPreview.innerHTML = '';
+                    for (let i = 0; i < this.files.length; i++) {
+                        licenseCertificationPreview.innerHTML += `<div>Selected file: ${this.files[i].name}</div>`;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
